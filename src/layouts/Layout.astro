@@ -1,0 +1,99 @@
+---
+// Layout.astro
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{Astro.props.title || "Naturman Visuals"}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    
+    <!-- HEADER -->
+    <header class="site-header">
+      <a href="/" class="logo">NATURMAN VISUALS</a>
+      <nav>
+        <a href="/">Projects</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <!-- CONTENUTO DELLA PAGINA -->
+    <main class="site-main">
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>&copy; {new Date().getFullYear()} Naturman Visuals. All rights reserved.</p>
+    </footer>
+
+  </body>
+</html>
+<style is:global>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #0f0f0f; /* Grigio scurissimo, quasi nero */
+    color: #f4f4f4; /* Testo bianco sporco */
+    line-height: 1.6;
+  }
+
+  .site-main {
+    min-height: 80vh;
+    max-width: 1600px; 
+    margin: 0 auto;    
+    padding: 3rem 2rem; 
+  }
+
+  /* HEADER SCURO */
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    max-width: 1600px; 
+    margin: 0 auto;
+    border-bottom: 1px solid #333; /* Bordo grigio scuro invece che chiaro */
+  }
+
+  .logo {
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: #ffffff; /* Logo bianco puro */
+  }
+
+  .site-header nav a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #b3b3b3; /* Link grigio chiaro */
+    font-weight: 300;
+    transition: color 0.2s ease;
+  }
+
+  .site-header nav a:hover {
+    color: #ffffff; /* Diventano bianchi al passaggio del mouse */
+  }
+
+  /* FOOTER SCURO */
+  .site-footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: 0.875rem;
+    color: #666;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-top: 1px solid #333;
+  }
+</style>

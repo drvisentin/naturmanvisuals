@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// Prendi tutti i progetti
+const progetti = await getCollection('progetti');
+
+// Definisci l'ordine delle categorie IN INGLESE
+const categorie = ['Travel', 'Portraits', 'Landscapes'];
+
+// Raggruppa i progetti per categoria e ordinali per data
+const progettiPerCategoria = categorie.map(cat => ({
+  nome: cat,
+  progetti: progetti
+    .filter(p => p.data.category === cat)
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+}))
+// Tieni solo le categorie che hanno almeno un progetto caricato
+.filter(cat => cat.progetti.length > 0);
+---
+
+<Layout title="Naturman Visuals - Portfolio">
+  <main class="home-container">
+    
+    {progettiPerCategoria.map((categoria) => (
+      <section class="categoria-section">
+        <h1 class="page-title">{categoria.nome}</h1>
+        
+        <div class="portfolio-grid">
+          {categoria.progetti.map((progetto) => (
+            <a href={`/progetti/${progetto.id.replace('.md', '')}/`} class="project-card">
+              <div class="image-wrapper">
+                <!-- Torna il tag <img> standard con lazy loading -->
+                <img src={progetto.data.cover} alt={progetto.data.title} loading="lazy" />
+              </div>
+              <div class="project-info">
+                <h2>{progetto.data.title}</h2>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+
+  </main>
+</Layout>
+
+<style>
+  .home-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .categoria-section {
+    margin-bottom: 6rem;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .project-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    overflow: hidden;
+    background-color: #111; 
+  }
+
+  /* Tornato il selettore standard */
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+  }
+
+  .project-card:hover .image-wrapper img {
+    transform: scale(1.05);
+  }
+
+  .project-info {
+    padding-top: 1rem;
+    text-align: center;
+  }
+
+  .project-info h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+</style>

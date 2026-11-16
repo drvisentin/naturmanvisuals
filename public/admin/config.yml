@@ -1,0 +1,36 @@
+# Configurazione per il test locale (ci permette di usare il CMS senza GitHub)
+local_backend: true
+
+backend:
+  name: git-gateway
+  branch: main # (o 'master' a seconda di come si chiama il tuo ramo principale)
+
+# Cartelle dove vengono salvate le immagini caricate
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "progetti"
+    label: "Projects"
+    label_singular: "Project"
+    folder: "src/content/progetti"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Cover Image (16:9)", name: "cover", widget: "image" }
+      
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Travel", "Portraits", "Landscapes"]
+        
+      - { label: "Description", name: "description", widget: "string", required: false }
+      
+      - label: "Gallery"
+        name: "galleria"
+        widget: "list"
+        field: { label: "Image", name: "image", widget: "image" }
+        
+      - { label: "Body Text", name: "body", widget: "markdown" }
