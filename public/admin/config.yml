@@ -1,9 +1,9 @@
-# Configurazione per il test locale (ci permette di usare il CMS senza GitHub)
-local_backend: true
-
 backend:
-  name: git-gateway
-  branch: main # (o 'master' a seconda di come si chiama il tuo ramo principale)
+  name: github
+  repo: drivsentin/naturmanvisuals # Il tuo utente e repository
+  branch: main
+  base_url: https://naturmanvisuals.pages.dev # L'URL del tuo sito su Cloudflare
+  auth_endpoint: api/auth # L'endpoint che gestirà il login
 
 # Cartelle dove vengono salvate le immagini caricate
 media_folder: "public/images/uploads"
