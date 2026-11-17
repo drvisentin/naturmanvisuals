@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: drivsentin/naturmanvisuals # Il tuo utente e repository
+  repo: drvisentin/naturmanvisuals # Assicurati che sia il nome utente esatto di GitHub
   branch: main
-  base_url: https://naturmanvisuals.pages.dev # L'URL del tuo sito su Cloudflare
-  auth_endpoint: /api/auth # L'endpoint che gestirà il login
+  base_url: https://decap-proxy.drvisentin.workers.dev # L'URL del TUO Worker
+  auth_endpoint: /auth # L'endpoint che abbiamo creato nel Worker
 
 # Cartelle dove vengono salvate le immagini caricate
 media_folder: "public/images/uploads"
