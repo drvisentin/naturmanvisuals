@@ -3,7 +3,7 @@ backend:
   repo: drivsentin/naturmanvisuals # Il tuo utente e repository
   branch: main
   base_url: https://naturmanvisuals.pages.dev # L'URL del tuo sito su Cloudflare
-  auth_endpoint: api/auth # L'endpoint che gestirà il login
+  auth_endpoint: /api/auth # L'endpoint che gestirà il login
 
 # Cartelle dove vengono salvate le immagini caricate
 media_folder: "public/images/uploads"
