@@ -2,8 +2,6 @@ backend:
   name: github
   repo: drvisentin/naturmanvisuals
   branch: main
-  base_url: https://decap-proxy.drvisentin.workers.dev
-  auth_endpoint: auth
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
