@@ -3,7 +3,7 @@ backend:
   repo: drvisentin/naturmanvisuals # Assicurati che sia il nome utente esatto di GitHub
   branch: main
   base_url: https://decap-proxy.drvisentin.workers.dev # L'URL del TUO Worker
-  auth_endpoint: /auth # L'endpoint che abbiamo creato nel Worker
+  auth_endpoint: auth # L'endpoint che abbiamo creato nel Worker
 
 # Cartelle dove vengono salvate le immagini caricate
 media_folder: "public/images/uploads"
